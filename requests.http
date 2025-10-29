@@ -10,3 +10,17 @@ Content-Type: application/json
   "lastName": "Doe",
   "email": "john@example.com"
 }
+
+###
+GET http://localhost:8080/api/products
+
+###
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "iPhone 13",
+  "price": 999.99,
+  "stock": 50,
+    "description": "Latest Apple iPhone model"
+}
