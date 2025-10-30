@@ -1,0 +1,47 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "lastName": "Doe",
+  "email": "john@example.com"
+}
+
+###
+GET http://localhost:8080/api/products
+
+###
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "iPhone 13",
+  "price": 999.99,
+  "stock": 50,
+    "description": "Latest Apple iPhone model"
+}
+
+###
+POST http://localhost:8080/api/orders
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 1
+    },
+    {
+      "productId": 2,
+      "quantity": 2
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/api/orders/1
