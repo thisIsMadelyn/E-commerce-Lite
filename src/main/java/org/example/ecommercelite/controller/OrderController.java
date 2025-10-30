@@ -1,5 +1,8 @@
 package org.example.ecommercelite.controller;
 
+import org.example.ecommercelite.exception.*;
+import org.example.ecommercelite.dto.CreateOrderRequest;
+import org.example.ecommercelite.dto.OrderItemRequest;
 import org.example.ecommercelite.service.OrderService;
 import org.example.ecommercelite.enity.Order;
 import org.example.ecommercelite.service.OrderService;
@@ -36,5 +39,26 @@ public class OrderController {
     }
 
 //    create new order
-//    @PostMapping
+    @PostMapping
+    public ResponseEntity<?> createOrder(@RequestBody CreateOrderRequest request) {
+        try {
+            Order order = orderService.createOrder(request.getUserId(), request.getItems());
+            return ResponseEntity.ok(order);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+//    cancel order
+    @PutMapping("/{orderId}/cancel")
+    public ResponseEntity<?> cancelOrder(@PathVariable Integer orderId) {
+        try{
+            orderService.cancelOrder(orderId);
+            return ResponseEntity.ok("Order cancelled successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }

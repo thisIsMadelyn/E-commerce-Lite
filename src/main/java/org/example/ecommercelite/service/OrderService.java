@@ -2,6 +2,7 @@ package org.example.ecommercelite.service;
 
 import org.example.ecommercelite.dto.OrderItemRequest;
 import org.example.ecommercelite.enity.*;
+import org.example.ecommercelite.exception.*;
 import org.example.ecommercelite.repository.OrderRepository;
 import org.example.ecommercelite.repository.OrderItemRepository;
 import org.example.ecommercelite.repository.ProductRepository;
@@ -9,6 +10,7 @@ import org.example.ecommercelite.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.example.ecommercelite.exception.UserNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class OrderService {
 
 //        1. Find user
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(userId));
 
 //        2. Create order
         Order order = new Order();
@@ -61,11 +63,11 @@ public class OrderService {
 
         for (OrderItemRequest ItemRequest : ItemRequests) {
             Product product = productRepository.findById(Math.toIntExact(ItemRequest.getProductId()))
-                    .orElseThrow(() -> new RuntimeException("Product not found: " + ItemRequest.getProductId()));
+                    .orElseThrow(() -> new ProductNotFoundException(ItemRequest.getProductId()));
 
 //            check stock availability
             if (product.getStockQuantity() < ItemRequest.getQuantity()) {
-                throw new RuntimeException("Insufficient stock for product: " + product.getName());
+                throw new InsufficientStockException(product.getName(),ItemRequest.getQuantity(), product.getStockQuantity());
             }
 
 //            calculate item total
@@ -100,10 +102,10 @@ public class OrderService {
     public void cancelOrder(Integer orderId) {
 
         Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
 
         if("CANCELLED".equals(order.getStatus())) {
-            throw new RuntimeException("Order is already cancelled");
+            throw new OrderAlreadyCancelled(orderId);
         }
 
 //        Restore product stock

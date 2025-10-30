@@ -28,7 +28,7 @@ public class Order {
     private User user;
 
     @Column(name = "total_ammount", nullable = false, precision = 10, scale = 2)
-    private BigDecimal totalAmmount;
+    private BigDecimal total_ammount;
 
     @Column(nullable = false)
     private String status = "PENDING";  // pending , completed, cancelled
@@ -44,7 +44,7 @@ public class Order {
     public Order() {}
 
     public Order(User user, String status, BigDecimal totalAmmount) {
-        this.totalAmmount = totalAmmount;
+        this.total_ammount = totalAmmount;
         this.user = user;
         this.status = status;
 
@@ -70,10 +70,10 @@ public class Order {
         this.status = status;
     }
     public BigDecimal getTotalAmmount() {
-        return totalAmmount;
+        return total_ammount;
     }
     public void setTotalAmmount(BigDecimal totalAmmount) {
-        this.totalAmmount = totalAmmount;
+        this.total_ammount = totalAmmount;
     }
     public LocalDateTime getCreatedAt() {
         return createdAt;
