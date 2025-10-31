@@ -39,18 +39,25 @@ src/main/java/com/ecommerce/ecommercelite/
 │   ├── ProductController.java          # Product catalog endpoints
 │   └── OrderController.java            # Order processing endpoints
 ├── dto/
-│   ├── OrderRequest.java               # Order creation payload
-│   ├── OrderResponse.java              # Order response format
-│   ├── ProductRequest.java             # Product creation/update payload
-│   └── UserRequest.java                # User creation payload
+│   ├── CreateOrderRequest.java         # Order request creation 
+│   └── OrderItemRequest.java           # Order item request
 ├── entity/
 │   ├── User.java                       # User entity with orders relationship
 │   ├── Product.java                    # Product entity with inventory
 │   ├── Order.java                      # Order entity with total calculation
 │   └── OrderItem.java                  # Order-item join entity
+├── exception/
+│   ├── GlobalExceptionHandler.java     # Custom exception for not found resources
+│   ├── InsufficientStockException.java # Custom exception for stock issues
+│   ├── OrderAlreadyCancelled.java      # Custom exception for cancelled orders
+│   ├── OrderNotFoundException.java     # Custom exception for order not found
+│   ├── ProductNotFoundException.java   # Custom exception for product not found
+│   └── UserNotFoundException.java # Custom exception for stock issues
+│ 
 ├── repository/
 │   ├── UserRepository.java             # User data access
 │   ├── ProductRepository.java          # Product data access
+│   ├── OrderItemRepository.java        # OrderItem data access
 │   └── OrderRepository.java            # Order data access
 ├── service/
 │   ├── UserService.java                # User business logic
@@ -60,17 +67,11 @@ src/main/java/com/ecommerce/ecommercelite/
 
 src/main/resources/
 ├── application.properties              # Database & server configuration
-└── data.sql                            # Optional sample data
+├── static/                             # Optional html resources
+└── templates/                          # Optional template resources
+    
 
-src/test/java/com/ecommerce/ecommercelite/
-├── service/
-│   ├── UserServiceTest.java
-│   ├── ProductServiceTest.java
-│   └── OrderServiceTest.java
-└── controller/
-    ├── UserControllerTest.java
-    ├── ProductControllerTest.java
-    └── OrderControllerTest.java
+
 ```
 
 ## 🔧 Technical Implementation
