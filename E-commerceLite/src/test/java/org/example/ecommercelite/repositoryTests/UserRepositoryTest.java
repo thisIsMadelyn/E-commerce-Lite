@@ -45,4 +45,14 @@ public class UserRepositoryTest {
         assertEquals(email, exists.get().getEmail());
 
     }
+
+    @Test
+    public void it_Should_Return_Empty_When_Email_Does_Not_Exists(){
+
+        String email = "hello@world.com";
+
+        Optional <User> exists = userRepository.findByEmail(email);
+
+        assertTrue(exists.isEmpty());
+    }
 }
