@@ -1,14 +1,13 @@
 package org.example.ecommercelite.enity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id

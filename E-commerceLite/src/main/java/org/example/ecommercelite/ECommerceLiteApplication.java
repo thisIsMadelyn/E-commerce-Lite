@@ -8,7 +8,7 @@ public class ECommerceLiteApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(ECommerceLiteApplication.class, args);
-    }
+        SpringApplication.run(ECommerceLiteApplication.class, args); // TODO add database diagram
+   }
 
 }
