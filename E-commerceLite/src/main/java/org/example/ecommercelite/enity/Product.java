@@ -1,6 +1,7 @@
 package org.example.ecommercelite.enity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,6 +22,9 @@ public class Product {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
     private Integer stockQuantity;
+
+    @CreationTimestamp
+    @Column(name = "created_at", /*nullable = false,*/ updatable = false)
     private LocalDateTime createdDate;
 
 //    constructors
