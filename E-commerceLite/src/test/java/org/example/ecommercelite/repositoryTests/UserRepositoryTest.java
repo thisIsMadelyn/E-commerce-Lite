@@ -51,7 +51,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void it_Should_Return_Empty_When_Email_Does_Not_Exists(){
+    public void it_Should_Return_Empty_When_Email_Does_Not_Exist(){
 
 //        Arrange
 
