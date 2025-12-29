@@ -31,7 +31,6 @@ public class ProductRepositoryTest {
     @Test
     public void check_If_Product_Exists_By_Name_Ignore_Case(){
 
-        long randomId = (long) (Math.random() * 1000);
         String productName = "iphone";
         Product product = new Product();
         product.setName(productName);
@@ -84,6 +83,24 @@ public class ProductRepositoryTest {
 
         assertNotNull(productList, "the product list shouldn't be null");
         assertEquals(2, productList.size(), "The DB should contain 2 products");
+
+    }
+
+    @Test
+    public void check_If_Product_Exists_By_Stock_Quantity_Greater_Than(){
+
+        String productName = "iphone";
+        Product product = new Product();
+        product.setName(productName);
+        product.setPrice(new BigDecimal("99.99"));
+        product.setStockQuantity(10);
+        product.setCreatedDate(LocalDateTime.now());
+
+        productRepository.save(product);
+
+        List<Product> productList = productRepository.findByStockQuantityGreaterThan(9);
+
+//        to be continued...
 
     }
 
